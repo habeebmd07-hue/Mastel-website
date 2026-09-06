@@ -51,7 +51,8 @@
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex; align-items:center; justify-content:space-between; height:76px;}
-  .wordmark{font-size:20px; display:flex; align-items:baseline; gap:6px;}
+  .wordmark{font-size:20px; display:flex; align-items:center; gap:10px;}
+  .brand-logo{width:60px; height:60px; object-fit:contain; flex:none; mix-blend-mode:multiply;}
   .wordmark .m{font-weight:700;}
   .wordmark .t{font-weight:400; color:var(--ink-soft); font-size:15px;}
   nav.links{display:flex; gap:36px;}
@@ -73,13 +74,19 @@
   .menu-toggle span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0;}
 
   /* ---------- Hero ---------- */
-  .hero{padding:88px 0 0;}
-  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .hero{position:relative; isolation:isolate; min-height:620px; padding:88px 0; display:flex; align-items:center; overflow:hidden; background:var(--dark);}
+  .hero-video{position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:center;}
+  .hero::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(16,19,28,.86) 0%,rgba(16,19,28,.62) 48%,rgba(16,19,28,.3) 100%);}
+  .hero-grid{width:100%; display:grid; grid-template-columns:1fr; align-items:center;}
+  .hero-grid > div:first-child{animation:hero-copy-in .8s ease-out both;}
+  .hero h1,.hero .lede{color:#fff;}
+  .hero .lede{color:#E5E7EC;}
   .hero h1{font-size:clamp(38px, 4.6vw, 60px); line-height:1.06; max-width:14ch;}
-  .hero p.lede{font-size:18px; color:var(--ink-soft); max-width:46ch; margin:24px 0 36px;}
+  .hero p.lede{font-size:18px; max-width:46ch; margin:24px 0 36px;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
-  .hero-art{position:relative;}
-  .hero-art svg{width:100%; height:auto;}
+  .hero .btn-outline{border-color:#fff; color:#fff;}
+  .hero .btn-outline:hover{background:#fff; color:var(--ink);}
+  @keyframes hero-copy-in{from{opacity:0; transform:translateY(18px);}to{opacity:1; transform:translateY(0);}}
 
   /* ---------- Ticker ---------- */
   .ticker-band{
@@ -94,7 +101,10 @@
   }
   .ticker-track span i{width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; margin:0 28px;}
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-  @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none;} }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+    .hero-grid > div:first-child{animation:none;}
+  }
 
   /* ---------- Section basics ---------- */
   section{padding:104px 0;}
@@ -203,7 +213,7 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="wordmark"><span class="m">Mastel</span><span class="t">Technology</span></a>
+    <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="Mastel%20Logo.png" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
     <nav class="links">
       <a href="#solutions">Solutions</a>
       <a href="#expertise">Expertise</a>
@@ -219,6 +229,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="Hero.mp4" type="video/mp4">
+    </video>
     <div class="wrap hero-grid">
       <div>
         <h1>Enterprise networks, built to hold.</h1>
@@ -227,45 +240,6 @@
           <a href="#contact" class="btn btn-primary">Book a consultation</a>
           <a href="#solutions" class="btn btn-outline">See what we do</a>
         </div>
-      </div>
-      <div class="hero-art">
-        <svg viewBox="0 0 560 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#D9DBE1" stroke-width="1.4">
-            <line x1="80" y1="120" x2="220" y2="70"/>
-            <line x1="220" y1="70" x2="380" y2="110"/>
-            <line x1="220" y1="70" x2="220" y2="220"/>
-            <line x1="380" y1="110" x2="480" y2="180"/>
-            <line x1="380" y1="110" x2="380" y2="260"/>
-            <line x1="220" y1="220" x2="80" y2="270"/>
-            <line x1="220" y1="220" x2="380" y2="260"/>
-            <line x1="380" y1="260" x2="480" y2="180"/>
-            <line x1="380" y1="260" x2="440" y2="360"/>
-            <line x1="220" y1="220" x2="240" y2="360"/>
-            <line x1="80" y1="270" x2="120" y2="390"/>
-            <line x1="240" y1="360" x2="440" y2="360"/>
-            <line x1="240" y1="360" x2="120" y2="390"/>
-          </g>
-          <g fill="#10131C">
-            <circle cx="80" cy="120" r="5"/>
-            <circle cx="220" cy="70" r="5"/>
-            <circle cx="380" cy="110" r="5"/>
-            <circle cx="480" cy="180" r="5"/>
-            <circle cx="220" cy="220" r="7"/>
-            <circle cx="380" cy="260" r="7"/>
-            <circle cx="80" cy="270" r="5"/>
-            <circle cx="240" cy="360" r="5"/>
-            <circle cx="440" cy="360" r="5"/>
-            <circle cx="120" cy="390" r="5"/>
-          </g>
-          <path id="pulsepath" d="M80,120 L220,70 L380,110 L480,180 L380,260 L440,360" fill="none" stroke="none"/>
-          <circle r="6" fill="#C68A2E">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path="M80,120 L220,70 L380,110 L480,180 L380,260 L440,360"/>
-          </circle>
-          <circle cx="220" cy="220" r="7" fill="none" stroke="#C68A2E" stroke-width="1.6">
-            <animate attributeName="r" values="7;16;7" dur="4.5s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0;1" dur="4.5s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
       </div>
     </div>
   </section>
@@ -516,7 +490,7 @@
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <a href="#top" class="wordmark"><span class="m">Mastel</span><span class="t">Technology</span></a>
+      <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="Mastel%20Logo.png" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
       <div class="foot-links">
         <a href="#solutions">Solutions</a>
         <a href="#expertise">Expertise</a>
