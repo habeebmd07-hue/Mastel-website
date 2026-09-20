@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mastel Technology — Enterprise Networking &amp; IT Infrastructure</title>
-<meta name="description" content="Mastel Technology designs, deploys and supports enterprise networking, security and managed IT infrastructure.">
+<meta name="description" content="Mastel Technology designs, deploys and supports enterprise networking, security and IT infrastructure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F2F3F6;
-    --panel:#FFFFFF;
-    --ink:#10131C;
-    --ink-soft:#4A4F5C;
-    --line:#D9DBE1;
+    --bg:#000000;
+    --panel:#0D0D0D;
+    --ink:#F5F5F5;
+    --ink-soft:#B8BBC4;
+    --line:#2A2A2A;
     --accent:#C68A2E;
     --accent-dark:#8C5F1D;
     --teal:#1E5C55;
-    --dark:#10131C;
-    --dark-panel:#181C27;
+    --dark:#000000;
+    --dark-panel:#111111;
     --max:1180px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -46,15 +46,16 @@
   /* ---------- Header ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(242,243,246,0.92);
+    background:rgba(0,0,0,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex; align-items:center; justify-content:space-between; height:76px;}
-  .wordmark{font-size:20px; display:flex; align-items:center; gap:10px;}
-  .brand-logo{width:60px; height:60px; object-fit:contain; flex:none; mix-blend-mode:multiply;}
+  .wordmark{font-size:26px; font-weight:700; display:flex; align-items:center; gap:12px;}
+  .brand-logo{width:76px; height:76px; object-fit:contain; flex:none; background:transparent; filter:invert(1) hue-rotate(180deg); mix-blend-mode:screen; animation:logo-float 4s ease-in-out infinite; transform-origin:center;}
+  @keyframes logo-float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-3px) rotate(1deg);}}
   .wordmark .m{font-weight:700;}
-  .wordmark .t{font-weight:400; color:var(--ink-soft); font-size:15px;}
+  .wordmark .t{font-weight:700; color:var(--ink-soft); font-size:inherit;}
   nav.links{display:flex; gap:36px;}
   nav.links a{font-size:15px; color:var(--ink-soft); transition:color .2s;}
   nav.links a:hover{color:var(--ink);}
@@ -63,7 +64,7 @@
     padding:12px 24px; border-radius:2px; font-size:15px; font-weight:500;
     border:1px solid transparent; cursor:pointer; transition:background .2s, color .2s, border-color .2s;
   }
-  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary{background:var(--accent); color:#fff;}
   .btn-primary:hover{background:var(--accent-dark);}
   .btn-outline{border-color:var(--ink); color:var(--ink); background:transparent;}
   .btn-outline:hover{background:var(--ink); color:#fff;}
@@ -100,10 +101,17 @@
     color:var(--ink-soft); padding:18px 0; white-space:nowrap;
   }
   .ticker-track span i{width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; margin:0 28px;}
+  .partner-ticker{margin-top:0; border:0; background:transparent;}
+  .partner-ticker .ticker-track span{gap:0; padding:12px 0;}
+  .partner-ticker .ticker-track img{display:inline-block; width:auto; height:64px; max-width:200px; object-fit:contain; vertical-align:middle; margin:0 42px;}
+  .partner-ticker .ticker-track img[alt="Eulen"]{height:82px; max-width:220px; filter:brightness(0) invert(1);}
+  .partner-ticker .ticker-track span i{display:none;}
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
   @media (prefers-reduced-motion: reduce){
     .ticker-track{animation:none;}
     .hero-grid > div:first-child{animation:none;}
+    .brand-logo{animation:none;}
+    .epc-art img{animation:none;}
   }
 
   /* ---------- Section basics ---------- */
@@ -111,6 +119,15 @@
   .section-head{max-width:640px; margin-bottom:56px;}
   .section-head h2{font-size:clamp(28px,3vw,38px); line-height:1.15;}
   .section-head p{color:var(--ink-soft); font-size:17px; margin-top:16px;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:64px; align-items:start;}
+  .about-copy{font-size:20px; line-height:1.5; max-width:64ch;}
+  .about-copy p + p{margin-top:20px;}
+  .about-facts{display:grid; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .about-fact{background:var(--panel); padding:22px 24px;}
+  .about-fact b{display:block; font-family:'Space Grotesk',sans-serif; font-size:22px; margin-bottom:4px;}
+  .about-fact span{font-size:14px; color:var(--ink-soft);}
 
   /* ---------- Feature rows (Solutions) ---------- */
   .feature-list{border-top:1px solid var(--line);}
@@ -127,26 +144,35 @@
   .block + .block{margin-top:120px;}
   .block.reverse .art{order:2;}
   .block .art{background:var(--panel); border:1px solid var(--line); border-radius:2px; padding:36px;}
+  .build-art{padding:0 !important; background:transparent !important; border:0 !important;}
+  .build-image{display:block; width:100%; height:auto;}
   .block h3{font-size:clamp(24px,2.6vw,30px); margin-bottom:16px; max-width:16ch;}
   .block p{color:var(--ink-soft); font-size:16px; max-width:44ch;}
   .block ul{margin-top:20px; display:flex; flex-direction:column; gap:10px;}
   .block li{font-size:15px; color:var(--ink); display:flex; gap:10px; align-items:baseline;}
   .block li::before{content:""; width:5px; height:5px; background:var(--accent); border-radius:50%; flex:none; transform:translateY(-2px);}
 
-  /* ---------- Expertise (dark) ---------- */
-  .expertise{background:var(--dark); color:#fff; border-radius:2px;}
-  .expertise-inner{
-    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
-    padding:80px 64px;
-  }
-  .expertise h2{color:#fff; font-size:clamp(26px,3vw,36px); max-width:14ch;}
-  .expertise p{color:#B9BEC9; font-size:16px; margin:20px 0 32px; max-width:48ch;}
-  .expertise .btn-primary{background:var(--accent); }
-  .expertise .btn-primary:hover{background:var(--accent-dark);}
-  .expertise .badge-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:#2A2F3D; border:1px solid #2A2F3D;}
-  .expertise .badge{background:var(--dark-panel); padding:24px; text-align:left;}
-  .expertise .badge b{display:block; font-family:'Space Grotesk',sans-serif; font-size:26px; color:var(--accent); margin-bottom:6px;}
-  .expertise .badge span{font-size:13.5px; color:#B9BEC9;}
+  /* ---------- EPC cards ---------- */
+  .epc-section{padding:104px 0 40px;}
+  .epc-section h2{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:clamp(30px,3.2vw,54px); line-height:1.08; max-width:none; color:var(--ink);}
+  .epc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:44px; align-items:start;}
+  .epc-card{position:relative; min-height:585px; display:flex; flex-direction:column; overflow:hidden; padding:20px; border-radius:5px; background:#B9CED9; color:#080B0E;}
+  .epc-card::before{display:none;}
+  .epc-art{height:340px; display:flex; align-items:center; justify-content:center; padding:28px 20px 0;}
+  .epc-art img{width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply; animation:epc-float 5s ease-in-out infinite;}
+  .epc-card:nth-child(2) .epc-art img{animation-delay:-1.6s;}
+  .epc-card:nth-child(3) .epc-art img{animation-delay:-3.2s;}
+  @keyframes epc-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .epc-card h3{margin-top:0; font-size:30px; line-height:1.1; color:#080B0E;}
+  .epc-card p{max-width:34ch; margin-top:16px; padding-right:56px; color:#162530; font-size:15px; line-height:1.35;}
+  .epc-details{display:none; margin-top:20px; padding-top:12px; border-top:1px solid rgba(8,11,14,.5); list-style:none;}
+  .epc-card.is-open{min-height:660px;}
+  .epc-card.is-open .epc-details{display:block;}
+  .epc-grid.all-open{align-items:stretch;}
+  .epc-details li{padding:10px 0; border-bottom:1px solid rgba(8,11,14,.35); font-size:14px; line-height:1.25;}
+  .epc-arrow{position:absolute; right:18px; bottom:22px; width:38px; height:38px; border:0; padding:0; background:transparent; font:inherit; font-size:30px; line-height:1; color:#080B0E; cursor:pointer;}
+  .epc-arrow::before{content:"↑";}
+  .epc-card.is-open .epc-arrow::before{content:"↓";}
 
   /* ---------- Partners ---------- */
   .partners-grid{
@@ -155,8 +181,10 @@
   .partner-tile{
     border-right:1px solid var(--line); border-bottom:1px solid var(--line);
     height:96px; display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--ink-soft);
-    text-align:center; padding:12px;
+    padding:16px; background:#fff;
+  }
+  .partner-tile img{
+    width:auto; height:52px; max-width:150px; object-fit:contain; mix-blend-mode:normal;
   }
 
   /* ---------- Insights ---------- */
@@ -168,26 +196,16 @@
   .insight-card .by{margin-top:20px; font-size:13.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:16px;}
 
   /* ---------- Contact ---------- */
-  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  .contact-grid{display:grid; grid-template-columns:1fr;}
   .contact-info h2{font-size:clamp(28px,3vw,36px); max-width:12ch;}
   .contact-info p{color:var(--ink-soft); margin:18px 0 32px; max-width:42ch;}
   .contact-lines{display:flex; flex-direction:column; gap:18px;}
   .contact-lines div{border-top:1px solid var(--line); padding-top:14px;}
   .contact-lines span.label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:4px;}
   .contact-lines span.val{font-family:'Space Grotesk',sans-serif; font-size:17px;}
-  form{display:flex; flex-direction:column; gap:18px;}
-  .field{display:flex; flex-direction:column; gap:8px;}
-  .field label{font-size:13px; color:var(--ink-soft);}
-  .field input, .field textarea{
-    border:none; border-bottom:1px solid var(--line); background:transparent;
-    font-family:'IBM Plex Sans',sans-serif; font-size:16px; padding:10px 2px; color:var(--ink);
-  }
-  .field input:focus, .field textarea:focus{outline:none; border-color:var(--ink);}
-  .field textarea{resize:vertical; min-height:90px;}
-  form .btn{align-self:flex-start; margin-top:6px;}
 
   /* ---------- Footer ---------- */
-  footer{border-top:1px solid var(--line); padding:56px 0 40px;}
+  footer{border-top:1px solid var(--line); padding:56px 0 40px; background:var(--bg);}
   .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px; margin-bottom:40px;}
   .foot-links{display:flex; gap:32px; flex-wrap:wrap;}
   .foot-links a{color:var(--ink-soft); font-size:14.5px;}
@@ -198,12 +216,14 @@
   @media (max-width: 900px){
     nav.links{display:none;}
     .menu-toggle{display:block;}
-    .hero-grid, .block, .block.reverse, .expertise-inner, .contact-grid{grid-template-columns:1fr;}
+    .hero-grid, .block, .block.reverse, .about-grid, .contact-grid{grid-template-columns:1fr;}
     .block.reverse .art{order:0;}
     .feature-row{grid-template-columns:44px 1fr; grid-template-areas:"icon title" "icon desc";}
     .feature-row .icon{grid-area:icon;} .feature-row h3{grid-area:title;} .feature-row p{grid-area:desc;}
     .partners-grid{grid-template-columns:repeat(2,1fr);}
     .insights-grid{grid-template-columns:1fr;}
+    .epc-grid{grid-template-columns:1fr;}
+    .epc-card{min-height:520px;}
     section{padding:72px 0;}
     .wrap{padding:0 20px;}
   }
@@ -213,14 +233,14 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="Mastel%20Logo.png" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
+    <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="New%20Logo.jpg" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
     <nav class="links">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
       <a href="#solutions">Solutions</a>
-      <a href="#expertise">Expertise</a>
       <a href="#insights">Insights</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn-primary">Book a consultation</a>
     <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -237,7 +257,6 @@
         <h1>Enterprise networks, built to hold.</h1>
         <p class="lede">Mastel Technology designs, deploys and supports the networking, security and IT infrastructure that businesses run on — from the switch in your server room to the Wi‑Fi in your boardroom.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary">Book a consultation</a>
           <a href="#solutions" class="btn btn-outline">See what we do</a>
         </div>
       </div>
@@ -248,11 +267,31 @@
   <div class="ticker-band">
     <div class="ticker-track">
       <span>
-        Structured Cabling<i></i>Enterprise Wi‑Fi<i></i>Network Security<i></i>Managed IT<i></i>Tower Deployment<i></i>RF Planning<i></i>Satellite Communication<i></i>Wireless Networks<i></i>IP Networks<i></i>Enterprise Solutions<i></i>Data Centers<i></i>IBS Services<i></i>
-        Structured Cabling<i></i>Enterprise Wi‑Fi<i></i>Network Security<i></i>Managed IT<i></i>Tower Deployment<i></i>RF Planning<i></i>Satellite Communication<i></i>Wireless Networks<i></i>IP Networks<i></i>Enterprise Solutions<i></i>Data Centers<i></i>IBS Services<i></i>
+        Structured Cabling<i></i>Enterprise Wi‑Fi<i></i>Network Security<i></i>Tower Deployment<i></i>Wireless Networks<i></i>IP Networks<i></i>Enterprise Solutions<i></i>Technical Services<i></i>
+        Structured Cabling<i></i>Enterprise Wi‑Fi<i></i>Network Security<i></i>Tower Deployment<i></i>Wireless Networks<i></i>IP Networks<i></i>Enterprise Solutions<i></i>Technical Services<i></i>
       </span>
     </div>
   </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About Mastel Technology</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>Mastel is a leading GCC company in engineering and implementation of information and communication technology (ICT) Networks and systems. Mastel gathered a wide expertise and in-depth technical expertise that is allowing the company to provide its customers with professional turn key services and solutions in various ICT domains.</p>
+          <p>Mastel customers were able to find solutions not only for their immediate needs but also to realize their strategic ideas and plans in building network infrastructure or developing their ongoing business processes from whatever sector they belong to (oil, banks, public sector). Customers find Mastel their perfect partner who is able to analyze all problems and propose the fit solutions technically and economically.</p>
+        </div>
+        <div class="about-facts">
+          <div class="about-fact"><b>End to end</b><span>From survey and design through deployment and support</span></div>
+          <div class="about-fact"><b>Built around you</b><span>Solutions shaped around your sites, teams and operations</span></div>
+          <div class="about-fact"><b>Always accountable</b><span>Clear documentation, defined response times and one team</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- SOLUTIONS -->
   <section id="solutions">
@@ -278,24 +317,9 @@
           <p>Firewalls, segmentation and access control configured around how your teams actually work, not a generic template.</p>
         </div>
         <div class="feature-row">
-          <svg class="icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="15" stroke="currentColor" stroke-width="1.6"/><path d="M22 13v9l6 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <h3>Managed IT &amp; support</h3>
-          <p>A team watching your network around the clock, with SLA-backed response times when something needs attention.</p>
-        </div>
-        <div class="feature-row">
           <svg class="icon" viewBox="0 0 34 34" fill="none"><path d="M17 4l-11 26h4l3-11h8l3 11h4L17 4z" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="4" r="1.6" fill="currentColor"/></svg>
           <h3>Tower deployment</h3>
           <p>Site acquisition and civil works for lattice towers, rooftop sites, monopoles and camouflaged structures, managed from planning through acceptance testing.</p>
-        </div>
-        <div class="feature-row">
-          <svg class="icon" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="3" fill="currentColor"/><circle cx="17" cy="17" r="9" stroke="currentColor" stroke-width="1.4"/><circle cx="17" cy="17" r="15" stroke="currentColor" stroke-width="1.4"/></svg>
-          <h3>RF planning</h3>
-          <p>Radio access design across GSM, UMTS, Wi‑Fi, WiMAX and LTE, using industry simulation tools to size coverage and capacity before installation.</p>
-        </div>
-        <div class="feature-row">
-          <svg class="icon" viewBox="0 0 34 34" fill="none"><rect x="4" y="14" width="10" height="6" rx="1" transform="rotate(-30 4 14)" stroke="currentColor" stroke-width="1.4"/><path d="M17 17c5-5 10-4 13 1" stroke="currentColor" stroke-width="1.4"/><circle cx="30" cy="18" r="1.6" fill="currentColor"/></svg>
-          <h3>Satellite communication</h3>
-          <p>VSAT and satellite links for voice, data and video where terrestrial connectivity isn't practical, engineered for reliability at remote or temporary sites.</p>
         </div>
         <div class="feature-row">
           <svg class="icon" viewBox="0 0 34 34" fill="none"><path d="M6 20c6-7 16-7 22 0" stroke="currentColor" stroke-width="1.5"/><path d="M11 24c3.4-3.6 8.6-3.6 12 0" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="28" r="1.6" fill="currentColor"/></svg>
@@ -313,15 +337,63 @@
           <p>Structured network infrastructure for corporate clients, drawing on engineering and installation experience across sectors and site types.</p>
         </div>
         <div class="feature-row">
-          <svg class="icon" viewBox="0 0 34 34" fill="none"><rect x="7" y="5" width="20" height="9" rx="1.2" stroke="currentColor" stroke-width="1.4"/><rect x="7" y="19" width="20" height="9" rx="1.2" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="9.5" r="1" fill="currentColor"/><circle cx="11" cy="23.5" r="1" fill="currentColor"/></svg>
-          <h3>Data centers</h3>
-          <p>A data center solution positioned between full do‑it‑yourself and a fully managed build — choose how much of the stack we take on.</p>
+          <svg class="icon" viewBox="0 0 34 34" fill="none"><rect x="5" y="7" width="24" height="20" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 13h24M11 7v6M23 7v6M10 19h5M19 19h5M10 23h5M19 23h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <h3>Technical services</h3>
+          <p>Specialized technical support, system integration and infrastructure services that keep networks reliable, secure and ready to scale.</p>
         </div>
         <div class="feature-row">
-          <svg class="icon" viewBox="0 0 34 34" fill="none"><rect x="5" y="10" width="24" height="16" rx="1.4" stroke="currentColor" stroke-width="1.4"/><path d="M11 10V7h12v3" stroke="currentColor" stroke-width="1.4"/><path d="M17 15v6" stroke="currentColor" stroke-width="1.4"/></svg>
-          <h3>IBS services</h3>
-          <p>Full turnkey Indoor Building Solutions — planning and site acquisition through procurement, civil and telecom work, RF testing and optimization.</p>
+          <svg class="icon" viewBox="0 0 34 34" fill="none"><path d="M7 7h20v20H7zM7 17h20M17 7v20" stroke="currentColor" stroke-width="1.4"/><path d="M10 10l14 14M24 10L10 24" stroke="currentColor" stroke-width="1.2"/></svg>
+          <h3>Metal fabrication</h3>
+          <p>Custom metal fabrication for equipment supports, platforms, frames and network infrastructure, manufactured to specification and finished for reliable long-term use.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPC SOLUTIONS -->
+  <section class="epc-section" aria-labelledby="epc-title">
+    <div class="wrap">
+      <h2 id="epc-title">Full-cycle EPC solutions for complex, large-scale<br>infrastructure projects.</h2>
+      <div class="epc-grid">
+        <article class="epc-card">
+          <div class="epc-art"><img src="engineering.jfif" alt="Engineering and consultancy illustration"></div>
+          <h3>Engineering</h3>
+          <p>Our engineering team delivers integrated design and consultancy solutions across civil, MEP, telecom, and digital infrastructure.</p>
+          <ul class="epc-details">
+            <li>Engineering consultancy services</li>
+            <li>Civil and structural services</li>
+            <li>MEP design services</li>
+            <li>Software development services</li>
+            <li>Telecom infrastructure services</li>
+          </ul>
+          <button class="epc-arrow" type="button" aria-label="Show engineering services" aria-expanded="false"></button>
+        </article>
+        <article class="epc-card">
+          <div class="epc-art"><img src="Procurement.JPG" alt="Procurement and delivery illustration"></div>
+          <h3>Procurement</h3>
+          <p>We handle the sourcing and delivery of critical components required for civil works, MEP systems, and advanced telecom and data infrastructure.</p>
+          <ul class="epc-details">
+            <li>Civil and MEP materials</li>
+            <li>Telecom materials</li>
+            <li>MEP design services</li>
+            <li>Heavy machinery + deployment</li>
+            <li>IoT and CPE devices</li>
+          </ul>
+          <button class="epc-arrow" type="button" aria-label="Show procurement services" aria-expanded="false"></button>
+        </article>
+        <article class="epc-card">
+          <div class="epc-art"><img src="Construction.JPG" alt="Construction safety helmet illustration"></div>
+          <h3>Construction</h3>
+          <p>We deliver end-to-end construction solutions for critical infrastructure projects, with a focus on precision, safety, and scalability. Our execution expertise includes:</p>
+          <ul class="epc-details">
+            <li>Data centers and Meet Me Rooms</li>
+            <li>General construction and Fit-Outs</li>
+            <li>Piling and foundation works</li>
+            <li>Telecom network infrastructure</li>
+            <li>Firefighting and control systems</li>
+          </ul>
+          <button class="epc-arrow" type="button" aria-label="Show construction services" aria-expanded="false"></button>
+        </article>
       </div>
     </div>
   </section>
@@ -330,21 +402,8 @@
   <section>
     <div class="wrap">
       <div class="block">
-        <div class="art">
-          <svg viewBox="0 0 460 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="60" y="30" width="220" height="46" rx="3" stroke="#10131C" stroke-width="1.4"/>
-            <rect x="60" y="90" width="220" height="46" rx="3" stroke="#10131C" stroke-width="1.4"/>
-            <rect x="60" y="150" width="220" height="46" rx="3" stroke="#C68A2E" stroke-width="1.8"/>
-            <rect x="60" y="210" width="220" height="46" rx="3" stroke="#10131C" stroke-width="1.4"/>
-            <g fill="#10131C"><circle cx="78" cy="53" r="2.4"/><circle cx="90" cy="53" r="2.4"/><circle cx="78" cy="113" r="2.4"/><circle cx="90" cy="113" r="2.4"/><circle cx="78" cy="233" r="2.4"/><circle cx="90" cy="233" r="2.4"/></g>
-            <g fill="#C68A2E"><circle cx="78" cy="173" r="2.6"/><circle cx="90" cy="173" r="2.6"/></g>
-            <line x1="300" y1="53" x2="360" y2="53" stroke="#D9DBE1" stroke-width="1.4"/>
-            <line x1="300" y1="173" x2="360" y2="173" stroke="#C68A2E" stroke-width="1.4"/>
-            <line x1="300" y1="233" x2="360" y2="233" stroke="#D9DBE1" stroke-width="1.4"/>
-            <circle cx="380" cy="53" r="4" stroke="#D9DBE1" stroke-width="1.4"/>
-            <circle cx="380" cy="173" r="4" stroke="#C68A2E" stroke-width="1.4"/>
-            <circle cx="380" cy="233" r="4" stroke="#D9DBE1" stroke-width="1.4"/>
-          </svg>
+        <div class="art build-art">
+          <img class="build-image" src="Build%20for%20image.JPG" alt="How Mastel works from survey and design through installation and handover">
         </div>
         <div>
           <h3>Built for how your business actually runs</h3>
@@ -357,73 +416,18 @@
         </div>
       </div>
 
-      <div class="block reverse">
-        <div class="art">
-          <svg viewBox="0 0 460 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="230" cy="120" r="56" stroke="#10131C" stroke-width="1.6"/>
-            <path d="M204 118a26 26 0 0152 0v18a10 10 0 01-10 10h-4" stroke="#10131C" stroke-width="1.6"/>
-            <rect x="196" y="118" width="14" height="26" rx="4" stroke="#10131C" stroke-width="1.6"/>
-            <rect x="250" y="118" width="14" height="26" rx="4" stroke="#10131C" stroke-width="1.6"/>
-            <line x1="230" y1="176" x2="230" y2="230" stroke="#D9DBE1" stroke-width="1.4" stroke-dasharray="4 5"/>
-            <rect x="150" y="230" width="160" height="50" rx="3" stroke="#C68A2E" stroke-width="1.8"/>
-            <text x="230" y="260" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="14" fill="#C68A2E">SLA: 15 min</text>
-          </svg>
-        </div>
-        <div>
-          <h3>Support that doesn't disappear after go‑live</h3>
-          <p>Most network problems are found before they become downtime. Our monitoring flags the pattern; our engineers — remote or on-site — close it out against a response time you agreed to in writing.</p>
-          <ul>
-            <li>24/7 monitoring across switches, access points and firewalls</li>
-            <li>Defined SLA response times, tracked and reported monthly</li>
-            <li>Remote-first, with on-site engineers dispatched when it matters</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTISE -->
-  <section id="expertise">
-    <div class="wrap">
-      <div class="expertise">
-        <div class="expertise-inner">
-          <div>
-            <h2>Certified where it counts</h2>
-            <p>Our engineers hold current vendor certifications across the networking, wireless and security platforms we deploy — kept up to date as those platforms change, not earned once and left to expire.</p>
-            <a href="#contact" class="btn btn-primary">Talk to an engineer</a>
-          </div>
-          <div class="badge-grid">
-            <div class="badge"><b>24/7</b><span>Monitoring &amp; escalation</span></div>
-            <div class="badge"><b>15 min</b><span>Typical priority response</span></div>
-            <div class="badge"><b>Vendor‑</b><span>certified engineering team</span></div>
-            <div class="badge"><b>End‑to‑end</b><span>design through support</span></div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- PARTNERS -->
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Platforms we work with</h2>
-        <p>Add your certified vendor and partner marks here — placeholders shown below.</p>
-      </div>
-      <div class="partners-grid">
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-        <div class="partner-tile">Partner logo</div>
-      </div>
+  <div class="ticker-band partner-ticker" aria-label="Our partners">
+    <div class="ticker-track">
+      <span>
+        <img src="Partners/Babtain-transparent.png" alt="Babtain"><i></i><img src="Partners/Cisco-transparent.png" alt="Cisco"><i></i><img src="Partners/DU-transparent.png" alt="DU"><i></i><img src="Partners/e%26-transparent.png" alt="e&amp;"><i></i><img src="Partners/HPE%20Aruba-transparent.png" alt="HPE Aruba"><i></i><img src="Partners/Huawei-transparent.png" alt="Huawei"><i></i><img src="Partners/Tp%20Link-transparent.png" alt="TP-Link"><i></i><img src="Partners/Eulen-transparent.png" alt="Eulen"><i></i><img src="Partners/HPE-transparent.png" alt="HPE"><i></i><img src="Partners/Tamdeed.webp" alt="Tamdeed"><i></i>
+        <img src="Partners/Babtain-transparent.png" alt="Babtain"><i></i><img src="Partners/Cisco-transparent.png" alt="Cisco"><i></i><img src="Partners/DU-transparent.png" alt="DU"><i></i><img src="Partners/e%26-transparent.png" alt="e&amp;"><i></i><img src="Partners/HPE%20Aruba-transparent.png" alt="HPE Aruba"><i></i><img src="Partners/Huawei-transparent.png" alt="Huawei"><i></i><img src="Partners/Tp%20Link-transparent.png" alt="TP-Link"><i></i><img src="Partners/Eulen-transparent.png" alt="Eulen"><i></i><img src="Partners/HPE-transparent.png" alt="HPE"><i></i><img src="Partners/Tamdeed.webp" alt="Tamdeed"><i></i>
+      </span>
     </div>
-  </section>
+  </div>
 
   <!-- INSIGHTS -->
   <section id="insights">
@@ -462,26 +466,10 @@
         <h2>Let's talk about your network</h2>
         <p>Tell us what you're running today and what's not working. We'll come back with a straight answer, not a sales pitch.</p>
         <div class="contact-lines">
-          <div><span class="label">Front desk</span><span class="val">+971 4 000 0000</span></div>
-          <div><span class="label">Sales team</span><span class="val">+971 50 000 0000</span></div>
-          <div><span class="label">Email</span><span class="val">hello@masteltechnology.com</span></div>
+          <div><span class="label">Sales team</span><span class="val">+971 50 798 1694</span></div>
+          <div><span class="label">Email</span><span class="val"><a href="mailto:mohammed@masteltechnology.com">mohammed@masteltechnology.com</a><br><a href="mailto:info.mastel@gmail.com">info.mastel@gmail.com</a></span></div>
         </div>
       </div>
-      <form onsubmit="event.preventDefault(); this.reset(); alert('Thanks — we\'ll be in touch shortly.');">
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" type="text" required>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" type="email" required>
-        </div>
-        <div class="field">
-          <label for="message">What are you looking to solve?</label>
-          <textarea id="message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send message</button>
-      </form>
     </div>
   </section>
 
@@ -490,17 +478,17 @@
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="Mastel%20Logo.png" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
+      <a href="#top" class="wordmark" aria-label="Mastel Technology home"><img class="brand-logo" src="New%20Logo.jpg" alt="Mastel Technology logo"><span class="m">Mastel</span><span class="t">Technology</span></a>
       <div class="foot-links">
         <a href="#solutions">Solutions</a>
-        <a href="#expertise">Expertise</a>
         <a href="#insights">Insights</a>
         <a href="#contact">Contact</a>
+          <a href="#about">About</a>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Mastel Technology. All rights reserved.</span>
-      <span>Front desk: +971 4 000 0000 · Sales: +971 50 000 0000</span>
+      <span>Sales: +971 50 798 1694</span>
     </div>
   </div>
 </footer>
@@ -511,8 +499,47 @@
   toggle.addEventListener('click', () => {
     const open = links.style.display === 'flex';
     links.style.display = open ? 'none' : 'flex';
-    links.style.cssText += open ? '' : 'position:absolute; top:76px; left:0; right:0; background:#F2F3F6; flex-direction:column; padding:24px 32px; border-bottom:1px solid #D9DBE1;';
+    links.style.cssText += open ? '' : 'position:absolute; top:76px; left:0; right:0; background:#000; flex-direction:column; padding:24px 32px; border-bottom:1px solid #2A2A2A;';
   });
+
+  const engineeringCard = document.querySelector('.epc-card');
+  const engineeringArrow = engineeringCard.querySelector('.epc-arrow');
+  const epcGrid = document.querySelector('.epc-grid');
+  const epcCards = document.querySelectorAll('.epc-card');
+  const syncEpcAlignment = () => {
+    const openCards = [...epcCards].filter(card => card.classList.contains('is-open'));
+    epcCards.forEach(card => { card.style.height = ''; });
+    epcGrid.classList.toggle('all-open', openCards.length === epcCards.length);
+    if (openCards.length >= 2 && window.matchMedia('(min-width: 901px)').matches) {
+      const alignedHeight = Math.max(...openCards.map(card => card.offsetHeight));
+      openCards.forEach(card => { card.style.height = `${alignedHeight}px`; });
+    }
+  };
+  engineeringArrow.addEventListener('click', () => {
+    const open = engineeringCard.classList.toggle('is-open');
+    engineeringArrow.setAttribute('aria-expanded', open);
+    engineeringArrow.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} engineering services`);
+    syncEpcAlignment();
+  });
+
+  const procurementCard = document.querySelectorAll('.epc-card')[1];
+  const procurementArrow = procurementCard.querySelector('.epc-arrow');
+  procurementArrow.addEventListener('click', () => {
+    const open = procurementCard.classList.toggle('is-open');
+    procurementArrow.setAttribute('aria-expanded', open);
+    procurementArrow.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} procurement services`);
+    syncEpcAlignment();
+  });
+
+  const constructionCard = document.querySelectorAll('.epc-card')[2];
+  const constructionArrow = constructionCard.querySelector('.epc-arrow');
+  constructionArrow.addEventListener('click', () => {
+    const open = constructionCard.classList.toggle('is-open');
+    constructionArrow.setAttribute('aria-expanded', open);
+    constructionArrow.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} construction services`);
+    syncEpcAlignment();
+  });
+  window.addEventListener('resize', syncEpcAlignment);
 </script>
 
 </body>
